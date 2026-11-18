@@ -86,7 +86,7 @@ export function ConfirmDialog({ open, title = "Are you sure?", message, confirmL
 }
 
 /* ---------- Form helpers ---------- */
-export function Field({ label, error, hint, children, required }: { label: string; error?: string; hint?: string; children: ReactNode; required?: boolean }) {
+export function Field({ label, error, hint, children, required }: { label: string; error?: string | undefined; hint?: string | undefined; children: ReactNode; required?: boolean }) {
   return (
     <label className="block">
       <span className="mb-1.5 block text-sm font-medium text-foreground">

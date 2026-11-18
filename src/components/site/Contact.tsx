@@ -10,7 +10,7 @@ export function Contact() {
   const c = useStore<any>(KEYS.content).contact;
   const cats = useStore<any[]>(KEYS.categories).filter((x) => x.status === "active");
   const [form, setForm] = useState(EMPTY);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof typeof EMPTY, string>>>({});
   const [result, setResult] = useState<{ ok: boolean; text: string; mail?: string } | null>(null);
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.address)}`;
 
@@ -18,7 +18,7 @@ export function Contact() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const er: Record<string, string> = {};
+    const er: Partial<Record<keyof typeof EMPTY, string>> = {};
     if (!form.name.trim()) er.name = "Please enter your full name.";
     if (!form.email.trim()) er.email = "Please enter your email address.";
     else if (!isEmail(form.email)) er.email = "Please enter a valid email address.";
